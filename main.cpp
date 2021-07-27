@@ -6,6 +6,10 @@
 
 using namespace std;
 
+/**
+ * comparison function for map
+ **/
+
 int cmp(const pair<string, int> &x, const pair<string, int> &y)
 {
     return x.second < y.second;
@@ -13,9 +17,9 @@ int cmp(const pair<string, int> &x, const pair<string, int> &y)
 
 void split(map<string, int> expense)
 {
-    int invovlers = expense.size();
+    int invovlers = expense.size();// number of people involved
 
-    int sum = 0;
+    int sum = 0;//total sum of money
 
     for (map<string, int>::iterator i = expense.begin(); i != expense.end(); i++)
         sum += i->second;
@@ -54,27 +58,21 @@ void split(map<string, int> expense)
             int price = -vMap[s].second;
             cout << vMap[s].first << " should pay " << vMap[b].first << " " << price << endl;
             vMap[b].second = vMap[s].second + vMap[b].second;
-            //cout << s << " " << b << " then ";
             s++;
-            //cout << s << " " << b << endl;
         }
         else if ((vMap[s].second + vMap[b].second) < 0)
         {
             int price = vMap[b].second;
             cout << vMap[s].first << " should pay " << vMap[b].first << " " << price << endl;
             vMap[s].second = vMap[s].second + vMap[b].second;
-            //cout << s << " " << b << " then ";
             b--;
-            //cout << s << " " << b << endl;
         }
         else if ((vMap[s].second + vMap[b].second) == 0)
         {
             int price = vMap[b].second;
             cout << vMap[s].first << " should pay " << vMap[b].first << " " << price << endl;
-            //cout << s << " " << b << " then ";
             s++;
             b--;
-            //cout << s << " " << b << endl;
         }
         sort(vMap.begin(), vMap.end(), cmp);
     }
@@ -87,7 +85,7 @@ void add_invovlers(map<string, int> &expense)
      * normal test cases
     **/
 
-    /* 
+    /*
     expense.insert(pair<string, int> ("A",122));
     expense.insert(pair<string, int> ("B",118));
     expense.insert(pair<string, int> ("C",160));
@@ -99,14 +97,14 @@ void add_invovlers(map<string, int> &expense)
      * test cases II
      * one person with no expense
     **/
-   
-    /*
+
+    
     expense.insert(pair<string, int>("A", 0));
     expense.insert(pair<string, int>("B", 125));
     expense.insert(pair<string, int>("C", 125));
     expense.insert(pair<string, int>("D", 125));
     expense.insert(pair<string, int>("E", 125));
-    */
+    
 }
 
 int main()
